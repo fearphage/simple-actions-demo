@@ -1,0 +1,15 @@
+name: demo
+
+on: [push]
+
+jobs:
+  run-external-action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          path: action
+          repository: thboop/comp-secrets
+      - uses: ./action/myaction
+        with:
+          secret: "Hello from the other side: ${{ secrets.MEH }}"
